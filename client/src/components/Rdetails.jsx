@@ -7,7 +7,7 @@ const RestaurantDetails = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showMore, setShowMore] = useState(false);  
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
@@ -27,46 +27,43 @@ const RestaurantDetails = () => {
     fetchRestaurantDetails();
   }, [id]);
 
-  if (loading) return <div className="text-center text-xl text-blue-500">Loading...</div>;
+  if (loading) return <div className="text-center text-xl text-teal-500">Loading...<strong>Please Wait...</strong></div>;
   if (error) return <div className="text-center text-red-500 text-lg">Error: {error}</div>;
 
   return (
     <motion.div 
-      className="mt-10 p-8 bg-gradient-to-r from-emerald-800 to-indigo-600 shadow-lg rounded-lg text-white"
+      className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-r from-teal-100 to-purple-200 text-gray-900 rounded-2xl shadow-2xl max-w-4xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        {/* Left Section - Image & Rating */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="relative">
           <motion.img
             src={restaurant.featured_image || "https://via.placeholder.com/600"}
             alt={restaurant.name}
-            className="w-full h-96 object-cover rounded-lg shadow-md"
+            className="w-full h-96 object-cover rounded-2xl shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           />
-          <div className="absolute top-4 left-4 bg-black text-white px-4 py-2 rounded-lg text-lg font-semibold">
+          <div className="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-4 py-2 rounded-xl text-lg font-semibold">
             ⭐ {restaurant.user_rating?.aggregate_rating || "N/A"}
           </div>
         </div>
 
-        {/* Right Section - Details */}
         <div>
-          <h1 className="text-5xl font-bold mb-3">{restaurant.name}</h1>
-          <p className="text-lg italic text-gray-200">{restaurant.location?.locality || "Location not available"}</p>
-          <div className="mt-4 space-y-3">
+          <h1 className="text-4xl font-extrabold mb-3 text-teal-600">{restaurant.name}</h1>
+          <p className="text-lg italic text-gray-700">{restaurant.location?.locality || "Location not available"}</p>
+          <div className="mt-4 space-y-3 text-gray-800">
             <p><b>Cuisine:</b> {restaurant.cuisines || "N/A"}</p>
             <p><b>Address:</b> {restaurant.location?.address || "N/A"}</p>
             <p><b>Cost for Two:</b> ₹{restaurant.average_cost_for_two || "N/A"}</p>
             <p><b>Phone:</b> {restaurant.phone_numbers || "Not available"}</p>
           </div>
           
-          {/* Show More / Show Less */}
           {showMore && (
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-3 text-gray-800">
               <p><b>Rating Text:</b> {restaurant.user_rating?.rating_text || "N/A"}</p>
               <p><b>Reviews:</b> {restaurant.user_rating?.votes || "N/A"}</p>
               <p><b>Timings:</b> {restaurant.timings || "N/A"}</p>
@@ -74,38 +71,38 @@ const RestaurantDetails = () => {
             </div>
           )}
 
-          {/* Button to toggle show more */}
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
-          >
-            {showMore ? "Show Less" : "Show More"}
-          </button>
-          
-          {restaurant.url && (
-            <a
-              href={restaurant.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+          <div className="mt-6 flex gap-4">
+            <button
+              onClick={() => setShowMore(!showMore)}
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition"
             >
-              Visit Website
-            </a>
-          )}
+              {showMore ? "Show Less" : "Show More"}
+            </button>
+            
+            {restaurant.url && (
+              <a
+                href={restaurant.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+              >
+                Visit Website
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Menu Section */}
       {restaurant.menu_url && (
-        <div className="mt-10 p-6 bg-white text-black rounded-lg shadow-lg">
-          <h2 className="text-3xl font-semibold mb-4">Menu</h2>
+        <div className="mt-10 p-6 bg-white text-gray-900 rounded-2xl shadow-lg">
+          <h2 className="text-3xl font-semibold mb-4 text-center">Menu</h2>
           <a
             href={restaurant.menu_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline text-lg"
+            className="block text-center text-teal-600 hover:underline text-lg"
           >
-            🍽 Click here to view menu
+            🍽 Click to view menu
           </a>
         </div>
       )}
