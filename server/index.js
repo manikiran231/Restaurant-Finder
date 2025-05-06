@@ -1,26 +1,32 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
 const connectDb = require("./db");
-const cors = require('cors');
 const restaurantRoutes = require("./routers/restaurantsRouter");
+const imageSearchRoute = require("./routers/imageSearchRoute");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
-app.use(express.json());
+// Middleware
+app.use(express.json()); 
 app.use(cors());
-
+// Connect to Database and Start Server
 const startServer = async () => {
   try {
-    await connectDb(); 
+    await connectDb();
+    console.log("✅ Database connected successfully!");
 
+    // Routes
     app.use("/api", restaurantRoutes); 
+    app.use("/image", imageSearchRoute); 
 
+    // Start Server
     app.listen(port, () => {
-      console.log(`Server running at ${port}`);
+      console.log(`🚀 Server running on http://localhost:${port}`);
     });
 
   } catch (error) {
-    console.error("Database connection failed", error);
+    console.error("❌ Database connection failed:", error.message);
     process.exit(1); 
   }
 };
