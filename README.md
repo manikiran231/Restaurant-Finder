@@ -1,28 +1,37 @@
-# Zomato Restaurant Listing & Searching
- 
-## Key Use Cases
- 
-### Data Loading
-Create an independent script to load the Zomato restaurant data available [here](https://www.kaggle.com/datasets/shrutimehta/zomato-restaurants-data) into a database.
- 
-### Web API Service
-Develop a web API service with the following endpoints to serve the content loaded in the previous step:
-  - **Get Restaurant by ID**: Retrieve details of a specific restaurant by its ID.
-  - **Get List of Restaurants**: Fetch a list of restaurants with pagination support.
- 
-### User Interface
-Develop a web application with the following pages, which must connect to the web API service:
-  - **Restaurant List Page**: Display a list of restaurants. Clicking on a restaurant should navigate the user to the restaurant's detail page.
-  - **Restaurant Detail Page**: Show details of a specific restaurant.
-  - **Location search**: Search restaurants in given latitude and longitude range (e.g restaurants in 3 km of a given latitude and longitude)
-  - **Image search**: Upload an image of a food like icecream, pasta etc., and search restaurants which offer those cuisines.
+# 🍽️ Zomato Restaurant Listing & Searching
 
-## Additional Use Cases (Optional)
-If time allows, implement the following additional features, ensuring they are supported in both the API and the UI:
-- **Filtering Options**:
-  - By Country
-  - By Average Spend for Two People
-  - By Cuisines
-- **Search Functionality**: Enable search for restaurants by name and description.
+Zomato Restaurant Listing & Searching is a full-stack web application designed to help users browse, search, and explore restaurants from the Zomato dataset. The app features a powerful REST API, intuitive user interface, image-based cuisine detection, and location-aware search.
 
-**Deployment Link**: https://www.youtube.com/watch?v=ynh9yP8HW_Q
+## ✨ Features
+
+🔍 **Restaurant List & Detail View** – View paginated lists of restaurants and see detailed information on each one  
+📍 **Location-Based Search** – Find restaurants within a 3 km radius of a given latitude and longitude  
+🖼️ **Image-Based Cuisine Search** – Upload an image (e.g., of pasta or ice cream) and find restaurants offering related cuisines  
+🔁 **Pagination Support** – Fetch restaurants in batches for better performance  
+📦 **Data Loader Script** – Import restaurant data from Kaggle into a database  
+🔎 **Text Search** – Search restaurants by name or description
+
+## 🛠️ Tech Stack
+
+| Layer        | Technologies Used                           |
+|--------------|---------------------------------------------|
+| 🖥️ Frontend   | React.js, Tailwind CSS, Vite                |
+| 🔙 Backend    | Node.js, Express.js                         |
+| 🗄️ Database   | MongoDB                                     |
+| 🧠 ML / Image Search | Gemini Api |
+| 🌐 API       | RESTful APIs for restaurant queries          |
+
+## 🔗 Deployment
+
+📽️ **Demo Video**: [Watch on YouTube](https://www.youtube.com/watch?v=ynh9yP8HW_Q)
+
+## 📂 Data Source
+
+📊 **Kaggle Dataset**: [Zomato Restaurants Data](https://www.kaggle.com/datasets/shrutimehta/zomato-restaurants-data)
+
+## 📥 How to Use
+
+1. Clone the repo  
+2. Load the data using the provided script  
+3. Start the backend and frontend servers  
+4. Explore restaurants via the web UI or REST APIs
